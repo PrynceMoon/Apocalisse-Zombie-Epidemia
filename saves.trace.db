@@ -1,0 +1,33 @@
+2024-05-25 17:56:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:04:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:05:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:06:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:10:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:22:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:22:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:25:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-05-25 18:25:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-06-13 10:53:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
+2024-06-13 10:56:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SALVATAGGI" not found (this database is empty); SQL statement:
+SELECT slot, descrizione FROM salvataggi WHERE slot <= 7 ORDER BY slot [42104-214]
