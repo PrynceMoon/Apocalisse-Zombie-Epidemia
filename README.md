@@ -68,31 +68,53 @@ Per poter cominciare una nuova esperienza di gioco ci sono dei comandi da esegui
 ### Descrizione Complessiva
 
 #### **LoadingBar**
-La classe `LoadingBar` gestisce la barra di caricamento del gioco. Include attributi come `progressBar`, `messaggioLabel`, `timer`, `finestra`, e `manager` che rappresentano rispettivamente la barra di progresso, l'etichetta per i messaggi, il timer, la finestra principale e il gestore del database. I metodi principali sono `LoadingBar(DB_Manager)`, che è il costruttore, `main(String[])`, che avvia il caricamento, e `aggiungiTaskMessaggio(String, boolean)` che aggiunge messaggi alla barra di progresso.
-
+La classe `LoadingBar` gestisce la barra di caricamento del gioco. Include attributi come `progressBar`, `messaggioLabel`, `timer` e `dbManager` che rappresentano rispettivamente la barra di progresso, l'etichetta per i messaggi, il timer e la gestore del database. Esso gestisce la barra di caricamento per l'esecuzione del gioco, vengono fatti riferimenti anche al DB perché viene acquisito il messaggio presente con la barra di caricamento che varia a seconda della lingua selezionata.
 #### **GameGUI**
-La classe `GameGUI` è il cuore dell'interfaccia utente del gioco. Gestisce vari componenti della GUI come `IntInputContent`, `OK_Manager`, `GameMap`, `LoadingBar` e altri. I suoi metodi principali includono `caricaGameMap()`, che carica la mappa del gioco, `caricaOggettiDiGioco()`, che carica gli oggetti di gioco, `avviaGioco()`, che avvia il gioco, e `salvaGioco()`, che salva lo stato attuale del gioco.
+La classe `GameGUI` è il cuore dell'interfaccia del gioco, in essa è presente tutta la fisica di gioco, ad esempio la verifica della missione, se essa è stata completata o meno, l'esecuzione di tutti i comandi utilizzabili nel gioco, sono presenti anche i messaggi che vengono visualizzati e scene di gioco.
 
 #### **GameMap**
-La classe `GameMap` gestisce la mappa del gioco. Contiene una mappa di stanze (`stanze`), un gestore del database (`mappaManager`), e un contenitore di oggetti di gioco (`gameObjectContainer`). I metodi principali sono `creaMappa()`, che crea una nuova mappa di gioco, `modificaStanza()`, che modifica una stanza esistente, `ottieniStanzaPerNome()`, che ottiene una stanza specifica per nome, e `rimuoviStanza()`, che rimuove una stanza dalla mappa.
+La classe `GameMap` gestisce la mappa del gioco. Contiene una mappa di stanze (`stanze`), un gestore del database per l'acquisizione delle mosse direzionali che possono essere eseguite, e un contenitore di oggetti di gioco (`gameObjectContainer`). Il funzionamento di essa coinsiste nella gestione delle stanze, se sono accessibili normalmente o accessibili con l'uso di codici di sicurezza o meno, l'inizializzazione delle stanze e delle mosse direzionali.
 
 #### **Room**
-La classe `Room` rappresenta le stanze del gioco. Ha attributi come `name`, `description`, `isEntry`, `isExit`, `neighbors`, e `gameObjectContainer` che descrivono il nome della stanza, la descrizione, se è un'entrata o un'uscita, i vicini e il contenitore degli oggetti di gioco. I metodi principali includono `addOggetto()`, che aggiunge un oggetto alla stanza, `rimuoviOggetto()`, che rimuove un oggetto, `ottieniOggettoPerNome()`, che ottiene un oggetto per nome, e `entraStanza()`, che permette di entrare nella stanza.
+La classe `Room` rappresenta le stanze del gioco. Ha attributi come `name`, `description`, `id`, `requiresKeycard`, `securityPin`, e `exit` che descrivono il nome della stanza, la descrizione, l'identificativo della stanza, se è richiesto il tesserino e il pin di sicurezza. Abbiamo `Room(String name, String description, int id): Costruttore che inizializza una nuova stanza`, `getName(), getDescription(), getId(): Restituiscono rispettivamente il nome, la descrizione e l'ID della stanza`,
+`isRequiresKeycard(), setRequiresKeycard(): Verificano e impostano se la stanza richiede un tesserino`,
+`setSecurityPin(), hasSecurityPin(), checkSecurityPin(): Gestiscono il PIN di sicurezza della stanza`,
+`setExit(), getExit(): Impostano e recuperano le uscite verso altre stanze` e
+`addObject(), getObjects(): Aggiungono oggetti alla stanza e restituiscono la lista degli oggetti presenti`.
 
 #### **Door**
-La classe `Door` rappresenta le porte tra le stanze. I suoi attributi includono `name`, `isOpen`, `isLocked`, `description`, `room1`, e `room2`, che descrivono il nome della porta, se è aperta o chiusa, se è bloccata o no, la descrizione e le stanze che collega. I metodi principali sono `setApertura()`, che imposta lo stato di apertura, `setBlocco()`, che imposta lo stato di blocco, e `entraPorta()`, che permette di attraversare la porta.
+La classe `Door` rappresenta le porte tra le stanze. In esso abbiamo `Door(): Costruttore di default per creare una nuova porta`,
+`setName(String name): Imposta il nome della porta`,
+`setPrevious_Room(int previous_Room): Imposta l'ID della stanza precedente collegata alla porta`,
+`getNext_Room(), setNext_Room(int next_Room): Ottengono e impostano l'ID della stanza successiva`,
+`getDescription(), setDescription(String description): Ottengono e impostano la descrizione della porta`,
+`isLocked(), setLocked(boolean locked): Verificano e impostano lo stato di blocco della porta`.
 
 #### **DB_Manager**
-La classe `DB_Manager` gestisce la connessione al database. Include attributi per la configurazione del database come `DB_DRIVER`, `DB_URL`, `USER`, e `PASS`. I suoi metodi principali sono `connetti()`, che connette al database, `disconnetti()`, che disconnette dal database, `eseguiQuery()`, che esegue una query, e `ottieniResultSet()`, che ottiene un result set dal database.
+La classe `DB_Manager` gestisce la connessione al database. Include attributi per la configurazione del database come `DB_DRIVER`, `DB_URL`, `USER`, e `PASS`. I suoi metodi principali sono `connetti()`, che connette al database, `disconnetti()`, che disconnette dal database, tutte le query che vengono eseguite per l'acquisizione delle informazioni dal db stesso.
 
 #### **Mission**
-La classe `Mission` gestisce le missioni del gioco. I suoi attributi includono `id`, `description`, e `isCompleted` che rappresentano l'identificativo della missione, la descrizione e se la missione è completata. I metodi principali sono `ottieniMissione()`, che ottiene una missione specifica, `completaMissione()`, che completa una missione, e `aggiornaStatoMissione()`, che aggiorna lo stato della missione.
+La classe `Mission` gestisce le missioni del gioco. In essa abbiamo `Missione(...): Costruttore che inizializza una nuova missione`,
+`getId(): Restituisce l'ID della missione`,
+`getNome(): Restituisce il nome della missione`,
+`getDescrizione(): Restituisce la descrizione della missione`,
+`getCondizioneCompletamento(): Restituisce la condizione di completamento della missione`,
+`isCompletata(), setCompletata(...): Verificano e impostano lo stato di completamento della missione`,
+`isMessaggioMostrato(), setMessaggioMostrato(...): Verificano e impostano se il messaggio di completamento è stato mostrato`.
 
 #### **GameObjectContainer**
 La classe `GameObjectContainer` gestisce un contenitore di oggetti di gioco. Il suo attributo principale è `containerList`, che è una lista di oggetti di gioco. I metodi principali sono `aggiungiOggetto()`, che aggiunge un oggetto al contenitore, `rimuoviOggetto()`, che rimuove un oggetto, e `ottieniOggettoPerNome()`, che ottiene un oggetto per nome.
 
 #### **GameObject**
-La classe `GameObject` rappresenta gli oggetti di gioco. I suoi attributi includono `id`, `name`, `description`, `isMovable`, `isPickable`, e altri che descrivono l'identificativo, il nome, la descrizione, se l'oggetto è mobile o raccoglibile. I metodi principali includono `esaminaOggetto()`, che esamina un oggetto, `usaOggetto()`, che usa un oggetto, e `spostaOggetto()`, che sposta un oggetto.
+La classe `GameObject` rappresenta gli oggetti di gioco. In esso abbiamo `GameObject(...): Costruttore che inizializza un nuovo oggetto di gioco con vari attributi`,
+`getIdOggetto(), setIdOggetto(...): Ottengono e impostano l'ID dell'oggetto`,
+`getLinguaId(), setLinguaId(...): Ottengono e impostano l'ID della lingua dell'oggetto`,
+`getIdStanza(), setIdStanza(...): Ottengono e impostano l'ID della stanza in cui si trova l'oggetto`,
+`getName(), setName(...): Ottengono e impostano il nome dell'oggetto`,
+`getDescription(), setDescription(...): Ottengono e impostano la descrizione dell'oggetto`,
+`isPrendibile(), setPrendibile(...): Verificano e impostano se l'oggetto può essere preso dal giocatore`,
+`isCreabile(), setCreabile(...): Verificano e impostano se l'oggetto può essere creato nel gioco`,
+`getIdContenitore(), setIdContenitore(...): Ottengono e impostano l'ID del contenitore in cui si trova l'oggetto`.
 
 
 
